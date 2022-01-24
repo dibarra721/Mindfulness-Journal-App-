@@ -3,6 +3,10 @@ const app = express()
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 var cors = require('cors')
+const port = process.env.PORT || 9000;
+// ... other imports
+const path = require("path")
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 
 
@@ -13,7 +17,9 @@ app.use(cors())
 
 
 // connect to DB
-mongoose.connect('mongodb://localhost:27017/journalsdb',
+// mongoose.connect('mongodb://localhost:27017/journalsdb',
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true },
+
     () => console.log("connected to  journal database")
     )
 
@@ -26,10 +32,13 @@ console.log(err)
 return res.send({errMsg : err.message})
 })
 
-
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 // Server Listen 1st argument is port, second is the callback function
 
-app.listen(9000, ()=> {
+app.port(9000, ()=> {
     console.log("the server is running on Port 9000")
     })
