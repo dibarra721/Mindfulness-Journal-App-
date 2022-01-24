@@ -4,6 +4,9 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 var cors = require('cors')
 require("dotenv").config()
+
+
+
 const PORT = process.env.PORT || 9000;
 // ... other imports
 const path = require("path")
@@ -28,9 +31,9 @@ mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/journalsdb",
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+      // useUnifiedTopology: true,
+      // useCreateIndex: true,
+      // useFindAndModify: false,
     },
     () => console.log("Connected to the DB")
   );
