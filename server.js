@@ -17,7 +17,7 @@ app.use(cors())
 
 
 // connect to DB
-mongoose.connect('mongodb://localhost:27017/journalsdb',
+mongoose.connect('mongodb://localhost:27017/journalsdb'),
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true },
 
     () => console.log("connected to  journal database")
