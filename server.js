@@ -3,7 +3,8 @@ const app = express()
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 var cors = require('cors')
-const port = process.env.PORT || 9000;
+require("dotenv").config()
+const PORT = process.env.PORT || 9000;
 // ... other imports
 const path = require("path")
 app.use(express.static(path.join(__dirname, "client", "build")))
@@ -24,7 +25,7 @@ app.use(cors())
 //     )
 
 mongoose.connect(
-    MONGODB_URI,
+    process.env.MONGODB_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -51,6 +52,6 @@ app.get("*", (req, res) => {
 
 // Server Listen 1st argument is port, second is the callback function
 
-app.port(9000, ()=> {
+app.listen(PORT, ()=> {
     console.log("the server is running on Port 9000")
     })
