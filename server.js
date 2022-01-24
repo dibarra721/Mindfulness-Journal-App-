@@ -17,11 +17,23 @@ app.use(cors())
 
 
 // connect to DB
-mongoose.connect('mongodb://localhost:27017/journalsdb'),
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true },
+// mongoose.connect('mongodb://localhost:27017/journalsdb'),
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true },
 
-    () => console.log("connected to  journal database")
-    )
+//     () => console.log("connected to  journal database")
+//     )
+
+mongoose.connect(
+    MONGODB_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    },
+    () => console.log("Connected to the DB")
+  );
+
 
 // routes
 app.use("/journals", require("./routes/journalRouter.js"))
