@@ -25,7 +25,7 @@ app.use(cors())
 //     )
 
 mongoose.connect(
-    process.env.MONGODB_URI,
+    process.env.MONGODB_URI || "mongodb://localhost:27017/journalsdb",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
