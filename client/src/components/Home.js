@@ -3,11 +3,16 @@ import {Link} from "react-router-dom"
 import Form from "./Form.js"
 import axios from "axios"
 import { Context } from '../Context'
+const { DateTime } = require("luxon");
 
 export default function Home(props) {
 
 const [dailyQuote, SetDailyQuote]=useState([])
-const {currentJournal, addJournal, view } = useContext(Context)
+const {currentJournal, addJournal, view, date } = useContext(Context)
+
+
+const newDate=DateTime.now(date).toLocaleString(DateTime.DATE_MED)	
+
 
 
 // daily quote api
@@ -47,7 +52,7 @@ return(
 <div className="currentJournal">
         {view === true ? <p>
 <h1> Todays Entry </h1>
-            Date:{currentJournal.date}<br/>
+            Date:{newDate}<br/>
             Did I meditate:{currentJournal.meditation}<br/>
 
            Did I move: {currentJournal.movement}<br/>
