@@ -20,20 +20,13 @@ app.use(morgan('dev'))
 app.use(cors())
 
 
-// connect to DB
-// mongoose.connect('mongodb://localhost:27017/journalsdb'),
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true },
 
-//     () => console.log("connected to  journal database")
-//     )
 
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/journalsdb",
     {
       useNewUrlParser: true,
-      // useUnifiedTopology: true,
-      // useCreateIndex: true,
-      // useFindAndModify: false,
+     
     },
     () => console.log("Connected to the DB")
   );

@@ -1,5 +1,7 @@
 import React,{ useState } from "react"
 import Form from "./Form.js"
+const { DateTime } = require("luxon");
+
 
 
 export default function Journal (props) {
@@ -8,7 +10,7 @@ export default function Journal (props) {
 
     const [editToggle, setEditToggle]= useState(false)
      
-
+    const newDate=DateTime.now(date).toLocaleString(DateTime.DATE_MED)	
 return (
 
 <>
@@ -18,7 +20,7 @@ return (
 
             { !editToggle ?
                 <>
-                    <p>Date: {date}</p>
+                    <p>Date: {newDate}</p>
                     <p>Did I meditate: {meditation}<br />
                         Did I move: {movement}<br />
                         How do I feel: {feeling}<br />
